@@ -4,7 +4,7 @@ CC = g++
 RM = rm -f
 FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 
-NAME = violence
+NAME = replace
 
 all: $(NAME)
 
