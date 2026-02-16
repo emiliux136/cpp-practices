@@ -15,6 +15,13 @@ public:
 	~Fixed();								//Destructor
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
+
+	Fixed(const int ni); //Constructor que pasa un int a fixed-point.
+	Fixed(const float nf); //Constructor que pasa un float a fixed-point.
+	float toFloat( void ) const;
+	int toInt( void ) const;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &right);
 
 #endif
