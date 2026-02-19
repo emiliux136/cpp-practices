@@ -2,9 +2,9 @@
 
 int main( void ) {
 Fixed a;
-Fixed const b( 10 );
-Fixed const c( 42.42f );
-Fixed const d( b );
+Fixed const b( 10 );  //instance created from int
+Fixed const c( 42.42f ); //instance created from float
+Fixed const d( b ); //instance created from fixed
 a = Fixed( 1234.4321f );
 Fixed const e(5);
 std::cout << "a is " << a << std::endl;

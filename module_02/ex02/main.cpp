@@ -31,9 +31,10 @@ int main( void )
 	std::cout << "x <= y: " << (x <= y) << std::endl;
 	std::cout << "x == z: " << (x == z) << std::endl;
 	std::cout << "x != y: " << (x != y) << std::endl;
+	std::cout << "0 significa false y 1 significa true\n";
 	
 	std::cout << "\nARITHMETIC OPERATORS\n";
-	Fixed num1(5.5f);
+	Fixed num1(5.0f);
 	Fixed num2(2.5f);
 	
 	std::cout << "num1 = " << num1 << ", num2 = " << num2 << std::endl;

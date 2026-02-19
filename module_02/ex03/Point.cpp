@@ -1,10 +1,20 @@
 #include "Point.hpp"
+#include "Fixed.hpp"
 
-Point::Point()
-{}
+Point::Point() : x(Fixed(0)), y(Fixed(0))
+{
+	std::cout << "Default constructor called\n";
+}
+
+Point::Point(Fixed x, Fixed y) : x(x), y(y)
+{
+	std::cout << "Default constructor called\n";
+}
 
 Point::~Point()
-{}
+{
+		std::cout << "Destructor called\n";
+}
 
 Point::Point(const Point &other) : x(other.x), y(other.y)
 {

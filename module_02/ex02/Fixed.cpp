@@ -2,21 +2,21 @@
 
 Fixed::Fixed() : fixedpn(0)
 {
-	std::cout << "Default constructor called\n";
+	//std::cout << "Default constructor called\n";
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called\n";
+	//std::cout << "Destructor called\n";
 }
 
 Fixed::Fixed(const Fixed &other) : fixedpn(other.fixedpn)
 {
-	std::cout << "Copy constructor called\n";
+	//std::cout << "Copy constructor called\n";
 }
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	std::cout << "Copy assignment operator called\n";
+	//std::cout << "Copy assignment operator called\n";
 	if (this == &other)
 		return *this;
 	this->setRawBits(other.getRawBits());
@@ -25,7 +25,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 
 int Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called\n";
+	//std::cout << "getRawBits member function called\n";
 	return (fixedpn);
 }
 
@@ -38,12 +38,12 @@ void Fixed::setRawBits( int const raw )
 
 Fixed::Fixed(const int ni) : fixedpn(ni * int(1 << fractional) + (ni >= 0 ? 0.5 : -0.5)) 
 {
-	std::cout << "Int constructor called\n";
+	//std::cout << "Int constructor called\n";
 }
 
 Fixed::Fixed(const float nf) : fixedpn(nf * float(1 << fractional) + (nf >= 0 ? 0.5 : -0.5)) 
 {
-	std::cout << "Float constructor called\n";
+	//std::cout << "Float constructor called\n";
 }
 
 float Fixed::toFloat( void ) const
@@ -122,30 +122,30 @@ Fixed Fixed::operator/(const Fixed &other) const
 }
 
 //The 4 increment/decrement:
-
+//here i add (1<<fractional) because if i simply do ++ i'll add just one internal valor, not a real one.
 Fixed &Fixed::operator++()
 {
-	this->fixedpn++;
+	this->fixedpn += (1 << fractional);
 	return(*this);
 }
 
 Fixed Fixed::operator++(int)
 {
 	Fixed copy(*this);
-	operator++();
+	this->fixedpn += (1 << fractional);
 	return (copy);
 }
 
 Fixed &Fixed::operator--()
 {
-	this->fixedpn--;
+	this->fixedpn -= (1 << fractional);
 	return(*this);
 }
 
 Fixed Fixed::operator--(int)
 {
 	Fixed copy(*this);
-	operator--();
+	this->fixedpn -= (1 << fractional);
 	return (copy);
 }
 

@@ -36,10 +36,10 @@ void Fixed::setRawBits( int const raw )
 
 //ex01
 
-/* Este constructor toma un entero y lo convierte a formato de punto fijo 
-multiplicándolo por 2^fractional y ajustando ligeramente para redondeo. 
-Así, la variable interna fixedpn ya está lista para representar el número como 
-punto fijo y poder usarla en operaciones o convertirla de vuelta a float/int. */
+/* This constructor takes an integer and converts it to fixed-point format
+by multiplying it by 2^fractional and slightly adjusting it for rounding.
+This way, the internal variable fixedpn is ready to represent the number in
+fixed-point form and can be used in operations or converted back to float/int. */
 
 Fixed::Fixed(const int ni) : fixedpn(ni * int(1 << fractional) + (ni >= 0 ? 0.5 : -0.5)) 
 {
@@ -51,12 +51,13 @@ Fixed::Fixed(const float nf) : fixedpn(nf * float(1 << fractional) + (nf >= 0 ? 
 	std::cout << "Float constructor called\n";
 }
 
-/*Esa línea toma el número almacenado en formato de punto fijo (fixedpn),
-que en realidad es un entero que ya incluye la parte decimal multiplicada 
-por 2^fractional, y lo convierte a un float real dividiéndolo entre 2^fractional 
-(1 << fractional). Esto “mueve la coma” a su posición correcta y devuelve el valor 
-decimal exacto, incluyendo los decimales, en lugar de solo la parte entera. 
-Básicamente, reconstruye el número original que querías representar con punto fijo.*/
+/*That line takes the number stored in fixed-point format (fixedpn),
+which is actually an integer that already includes the fractional part multiplied
+by 2^fractional, and converts it into a real float by dividing it by 2^fractional
+(1 << fractional).
+This “moves the decimal point” back to its correct position and returns the exact
+decimal value, including the fractional part, instead of just the integer portion.
+Basically, it reconstructs the original number you wanted to represent using fixed-point format.*/
 
 float Fixed::toFloat( void ) const
 {
@@ -74,6 +75,7 @@ int Fixed::toInt( void ) const
 
 std::ostream &operator<<(std::ostream &out, const Fixed &right) 
 {
-  out << right.toFloat();
-  return (out);
+	out << right.toFloat();
+	//std::cout << "\n<< operator called\n";
+	return (out);
 }
