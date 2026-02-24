@@ -6,7 +6,7 @@ ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "Default constructor called\n";
 	this->Name = name;
-	this->Points = 2;
+	this->Points = 10;
 	this->Attack = 0;
 	this->Energy = 10;
 }
@@ -73,7 +73,7 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << this->getName() << " don't have attack points so it can't attack.\n";
 		return ;
 	}
-	std::cout << "ClapTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttack() << " points of damage." << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttack() << " points of damage. Energy: <" << this->getEnergy() << ">" <<std::endl;
 	this->Energy -= 1;
 }
 
@@ -95,5 +95,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << this->getName() << " don't have attack points so it can't be repaired.\n";
 		return ;
 	}
-	std::cout << "ClapTrap " << this->getName() << " repairs itself with " << amount << ", so now has " << this->getAttack() << " hit points." << std::endl;
+	this->Points += amount;
+	this->Energy -= 1;
+	std::cout << "ClapTrap " << this->getName() << " repairs itself so now has " << this->getPoints() << " hit points. Energy: <" << this->getEnergy() << ">" <<std::endl;
 }

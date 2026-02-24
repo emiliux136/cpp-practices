@@ -2,13 +2,16 @@
 
 int main()
 {
-  ClapTrap MachineA("Paco");
-  ClapTrap MachineB("Pepe");
-  MachineA.attack(MachineB.getName());
-  MachineA.takeDamage(2);
-  //MachineB.takeDamage(1000);
-  MachineB.attack("Tests");
-  MachineA.attack("Tests");
-  MachineA.attack(MachineB.getName());
+  ClapTrap A("Paco");
+  ClapTrap B("Pepe");
+  A.attack(B.getName());
+  A.takeDamage(2);
+  B.takeDamage(9);
+  B.beRepaired(8);
+  B.attack("Tests");
+  A.attack("Tests");
+  std::cout << A.getName() << " has " << A.getPoints() << " points.\n";
+  std::cout << B.getName() << " has " << B.getPoints() << " points.\n";
+  A.attack(B.getName());
   return 0;
 }
