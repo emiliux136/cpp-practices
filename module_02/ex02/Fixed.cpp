@@ -122,8 +122,8 @@ Fixed Fixed::operator/(const Fixed &other) const
 }
 
 //The 4 increment/decrement:
-//here i add (1<<fractional) because if i simply do ++ i'll add just one internal valor, not a real one.
-Fixed &Fixed::operator++()
+//here i add (1<<fractional) because if i simply do ++ i'll add just one internal fixed valor, not a int one.
+/*Fixed &Fixed::operator++()
 {
 	this->fixedpn += (1 << fractional);
 	return(*this);
@@ -146,6 +146,32 @@ Fixed Fixed::operator--(int)
 {
 	Fixed copy(*this);
 	this->fixedpn -= (1 << fractional);
+	return (copy);
+}*/
+
+Fixed &Fixed::operator++()
+{
+	this->fixedpn++;
+	return(*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed copy(*this);
+	this->fixedpn++;
+	return (copy);
+}
+
+Fixed &Fixed::operator--()
+{
+	this->fixedpn--;
+	return(*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed copy(*this);
+	this->fixedpn--;
 	return (copy);
 }
 

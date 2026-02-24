@@ -73,13 +73,6 @@ int main( void )
 	std::cout << "Fixed::min(cm1, cm2) = " << Fixed::min(cm1, cm2) << std::endl;
 	std::cout << "Fixed::max(cm1, cm2) = " << Fixed::max(cm1, cm2) << std::endl;
 	
-	std::cout << "\nCOMPOUND OPERATIONS\n";
-	Fixed p(5.05f);
-	Fixed q(2);
-	std::cout << "p = " << p << ", q = " << q << std::endl;
-	Fixed result = p * q;
-	std::cout << "result = p * q = " << result << std::endl;
-	
 	std::cout << "\n";
 	return 0;
 }
