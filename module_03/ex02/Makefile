@@ -1,10 +1,10 @@
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
 FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 
-NAME = scav
+NAME = frag
 
 all: $(NAME)
 

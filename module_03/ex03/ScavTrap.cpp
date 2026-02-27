@@ -9,6 +9,8 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->Points = 100;
 	this->Energy = 50;
 	this->Attack = 20;
+	ScavEnergy = 50;
+	this->GuardGateStatus = false;
 }
 
 ScavTrap::~ScavTrap()
@@ -44,19 +46,6 @@ bool ScavTrap::getStatus() const
 
 //Required functions.
 
-void ScavTrap::guardGate()
-{
-	if(getStatus() == true)
-	{
-		this->GuardGateStatus = false;
-		std::cout << "ScavTrap: Gate Keeping mode OFF\n";
-	}
-	else
-	{
-		this->GuardGateStatus = true;
-		std::cout << "ScavTrap: Gate Keeping mode ON\n";
-	}
-}
 void ScavTrap::attack(const std::string& target)
 {
 	if(!(this->getEnergy() > 0))
@@ -70,5 +59,20 @@ void ScavTrap::attack(const std::string& target)
 		return ;
 	}
 	this->Energy -= 1;
-	std::cout << "PUNCH ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttack() << " points of damage." <<std::endl;
+	std::cout << "PUNCH ScavTrap " << this->getName() << " attacks " << target
+		<< ", causing " << this->getAttack() << " points of damage." << std::endl;
+}
+
+void ScavTrap::guardGate()
+{
+	if(getStatus() == true)
+	{
+		this->GuardGateStatus = false;
+		std::cout << "ScavTrap: Gate Keeping mode OFF\n";
+	}
+	else
+	{
+		this->GuardGateStatus = true;
+		std::cout << "ScavTrap: Gate Keeping mode ON\n";
+	}
 }

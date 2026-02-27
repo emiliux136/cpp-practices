@@ -2,13 +2,10 @@
 
 //Orthodox canonical form.
 
-ClapTrap::ClapTrap(std::string name)
+ClapTrap::ClapTrap(std::string name) : Points(10), Energy(10), Attack(0)
 {
-	std::cout << "ClapTrap: Default constructor called\n";
 	this->Name = name;
-	this->Points = 10;
-	this->Energy = 10;
-	this->Attack = 0;
+	std::cout << "ClapTrap: Default constructor called\n";
 }
 
 ClapTrap::~ClapTrap()
@@ -79,7 +76,7 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	this->Points -= ((int(amount)));
+	this->Points += (-(int(amount)));
 	std::cout << this->getName() << ": DAMMIT I got a " << amount << " attack damage." << std::endl;
 }
 

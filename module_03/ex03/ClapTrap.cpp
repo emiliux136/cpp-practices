@@ -79,7 +79,7 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	this->Points -= ((int(amount)));
+	this->Points += (-(int(amount)));
 	std::cout << this->getName() << ": DAMMIT I got a " << amount << " attack damage." << std::endl;
 }
 

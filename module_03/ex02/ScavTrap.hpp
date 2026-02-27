@@ -15,8 +15,6 @@ class ScavTrap : public ClapTrap //call the clapTrap class to heritage its metto
 
 		bool getStatus() const;
 		void guardGate();
-		void attack(const std::string& target);
-		
 };
 
 #endif

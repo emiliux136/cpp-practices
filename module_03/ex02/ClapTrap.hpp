@@ -14,7 +14,7 @@ public:
 	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap &other);
 	ClapTrap &operator=(const ClapTrap &other);
-	~ClapTrap();
+	virtual ~ClapTrap();
 
 	std::string getName() const;
 	int getPoints() const;

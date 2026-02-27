@@ -9,6 +9,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->Points = 100;
 	this->Energy = 50;
 	this->Attack = 20;
+	this->GuardGateStatus = false;
 }
 
 ScavTrap::~ScavTrap()
@@ -56,19 +57,4 @@ void ScavTrap::guardGate()
 		this->GuardGateStatus = true;
 		std::cout << "ScavTrap: Gate Keeping mode ON\n";
 	}
-}
-void ScavTrap::attack(const std::string& target)
-{
-	if(!(this->getEnergy() > 0))
-	{
-		std::cout << this->getName() << " don't have energy points so it can't attack.\n";
-		return ;
-	}
-	if(!(this->getPoints() > 0))
-	{
-		std::cout << this->getName() << " don't have attack points so it can't attack.\n";
-		return ;
-	}
-	this->Energy -= 1;
-	std::cout << "PUNCH ScavTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttack() << " points of damage." <<std::endl;
 }
