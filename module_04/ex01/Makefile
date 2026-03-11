@@ -1,10 +1,10 @@
-SRC = animal.cpp dog.cpp main.cpp cat.cpp WrongCat.cpp WrongAnimal.cpp
+SRC = animal.cpp dog.cpp main.cpp cat.cpp Brain.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
 FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 
-NAME = poly
+NAME = think
 
 all: $(NAME)
 
