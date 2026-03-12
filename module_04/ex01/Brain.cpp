@@ -21,13 +21,14 @@ Brain::Brain(const Brain &other)
 
 Brain &Brain::operator=(const Brain &other)
 {
+	std::cout << "Brain: Copy assignment operator called\n";
 	for(int i = 0; i < 100; i++)
 		idea[i] = other.idea[i];
+	this->index = other.index;
 	return *this;
-	std::cout << "Brain: Copy constructor called\n";
 }
 
-void Brain::setIdea(std::string think)
+void Brain::setIdea(std::string think) const
 {
 	if(index < 100)
 	{
@@ -36,7 +37,7 @@ void Brain::setIdea(std::string think)
 	}
 }
 
-std::string Brain::getIdea( void )
+std::string Brain::getIdea( void ) const
 {
 	std::string allIdeas = "";
 	for(int i = 0; i < index && i < 100; i++)

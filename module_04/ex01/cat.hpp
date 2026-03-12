@@ -17,8 +17,8 @@ public:
 	virtual ~Cat(); 
 	
 	void makeSound() const;
-	void setIdea(std::string think);
-	std::string getIdea(void); 
+	void setIdea(const std::string &think) const;
+	std::string getIdea() const;
 };
 
 #endif
