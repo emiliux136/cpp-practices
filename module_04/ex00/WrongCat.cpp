@@ -30,7 +30,7 @@ WrongCat &WrongCat::operator=(const WrongCat &other)
 
 //functions
 
-void WrongCat::makeSound ()
+void WrongCat::makeSound () const
 {
 	std::cout << "Mamahuevo, digo... miau miau" << std::endl;
 }

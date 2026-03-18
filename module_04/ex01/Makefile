@@ -2,7 +2,7 @@ SRC = animal.cpp dog.cpp main.cpp cat.cpp Brain.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
-FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
+FLAGS = -Wall -Werror -Wextra -std=c++98
 
 NAME = think
 
