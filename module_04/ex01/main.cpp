@@ -140,7 +140,6 @@ int main()
 	cat1->setIdea("Jumping at a sudden noise");
 	cat1->setIdea("Watching shadows move");
 	cat1->setIdea("Guarding the hallway");
-
 	
 	printTitle("Verifying separate brains");
 	std::cout << "\nDog 1 idea again: \n" << dog1->getIdea() << std::endl;
