@@ -16,16 +16,33 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat &operator=(const Bureaucrat &other);
 		~Bureaucrat();
+		void checkGrade(int grade);
+		void incrementGrade();
+		void decrementGrade();
+		std::string getName() const;
+		unsigned int getGrade() const;
 
-		//exception classes
+		//especific exception classes (Heredan de exception)
 		class GradeTooHighException : public std::exception
 		{
-
+			public:
+			//what sirve para devolver un mensaje descriptivo de  error.
+			const char* what() const noexcept override 
+			{
+				return "Grade too high";
+			}
 		};
 		class GradeTooLowException : public std::exception
 		{
-
+			public:
+			const char* what() const noexcept override 
+			{
+				return "Grade too low";
+			}
 		};
 };
+
+// << declared outside the class because the left-hand operand is std::ostream not the class type
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj);
 
 #endif
