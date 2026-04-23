@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 Form::Form() : _name("default"), _sign(false), _signGrade(150), _executionGrade(150)
@@ -6,7 +6,7 @@ Form::Form() : _name("default"), _sign(false), _signGrade(150), _executionGrade(
 	std::cout << "Form Default Constructor called." << std::endl;
 }
 
-Form::Form(std::string const &name, bool &sign, int const &sG, int const &eG) : _name(name)
+Form::Form(std::string const &name, int const &sG, int const &eG) : _name(name)
 {
 	std::cout << "Form: Param constructor called\n";
 	checkGrade(sG);
@@ -86,4 +86,18 @@ void Form::beSigned(Bureaucrat &signer)
 		signer.signForm(this, "");
 		this->_sign = true;
   	}
+}
+
+void Form::execute(Bureaucrat const &executor) const
+{
+	if (!this->getSignGrade())
+		throw Form::FormNotSigned();
+	if (this->getSignGrade() < executor.getGrade())
+		throw Form::GradeTooLowException();
+	this->executer();
+}
+
+void Form::changeSign(bool newSign)
+{
+	_sign = newSign;
 }
