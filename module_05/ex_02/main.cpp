@@ -1,6 +1,10 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 static void printTitle(const std::string &title)
@@ -8,128 +12,94 @@ static void printTitle(const std::string &title)
 	std::cout << "\n========== " << title << " ==========" << std::endl;
 }
 
+static void trySignAndExecute(Form &form, Bureaucrat &signer, Bureaucrat &executor)
+{
+	std::cout << "Before sign: " << form << std::endl;
+	try
+	{
+		form.beSigned(signer);
+		std::cout << "After sign:  " << form << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Sign failed: " << e.what() << std::endl;
+	}
+
+	try
+	{
+		form.execute(executor);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Execute failed: " << e.what() << std::endl;
+	}
+}
+
 int main()
 {
-	printTitle("Default constructors + getters + operator<<");
+	std::srand(std::time(NULL));
+
+	printTitle("Bureaucrat boundaries");
+	
 	try
 	{
-		Bureaucrat defB;
-		std::cout << "bureaucrat name: " << defB.getName() << ", grade: " << defB.getGrade() << std::endl;
-		std::cout << defB;
-
-		bool sign = false;
-		Form defF("DefaultForm", sign, 150, 150);
-		std::cout << defF << std::endl;
+		Bureaucrat defaultBureaucrat;
+		Bureaucrat top("Top", 1);
+		Bureaucrat bottom("Bottom", 150);
+		std::cout << defaultBureaucrat;
+		std::cout << top;
+		std::cout << bottom;
 	}
 	catch (const std::exception &e)
 	{
 		std::cout << "Unexpected exception: " << e.what() << std::endl;
 	}
 
-	printTitle("Form param constructor valid");
-	try
-	{
-		bool sign = false;
-		Form leaveRequest("LeaveRequest", sign, 75, 30);
-		std::cout << leaveRequest << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "Unexpected exception: " << e.what() << std::endl;
-	}
-
-	printTitle("Form constructor invalid grades");
-	try
-	{
-		bool sign = false;
-		Form badHigh("BadHigh", sign, 0, 30);
-		std::cout << badHigh << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "Caught expected exception (sign grade too high): " << e.what() << std::endl;
-	}
-
-	try
-	{
-		bool sign = false;
-		Form badLow("BadLow", sign, 80, 151);
-		std::cout << badLow << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "Caught expected exception (execution grade too low): " << e.what() << std::endl;
-	}
-
-	printTitle("beSigned success");
-	try
-	{
-		Bureaucrat boss("Boss", 20);
-		bool sign = false;
-		Form contract("Contract", sign, 30, 10);
-		std::cout << "Before sign: " << contract << std::endl;
-		contract.beSigned(boss);
-		std::cout << "After sign:  " << contract << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "Unexpected exception: " << e.what() << std::endl;
-	}
-
-	printTitle("beSigned failure (bureaucrat grade too low)");
+	printTitle("Form construction and signing");
 	try
 	{
 		Bureaucrat intern("Intern", 140);
-		bool sign = false;
-		Form topSecret("TopSecret", sign, 25, 5);
-		std::cout << "Before sign attempt: " << topSecret << std::endl;
-		topSecret.beSigned(intern);
-		std::cout << "This line should not print" << std::endl;
+		Bureaucrat manager("Manager", 40);
+		Bureaucrat president("President", 1);
+
+		ShrubberyCreationForm shrubbery("home");
+		RobotomyRequestForm robotomy("Bender");
+		PresidentialPardonForm pardon("Arthur Dent");
+
+		trySignAndExecute(shrubbery, intern, intern);
+		trySignAndExecute(robotomy, manager, manager);
+		trySignAndExecute(pardon, president, president);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Unexpected exception: " << e.what() << std::endl;
+	}
+
+	printTitle("Unsigned execution should fail");
+	try
+	{
+		Bureaucrat president("President", 1);
+		ShrubberyCreationForm shrubbery("garden");
+		std::cout << "Attempting to execute without signing" << std::endl;
+		shrubbery.execute(president);
+		std::cout << "Unexpected success: unsigned form executed" << std::endl;
 	}
 	catch (const std::exception &e)
 	{
 		std::cout << "Caught expected exception: " << e.what() << std::endl;
 	}
 
-	printTitle("beSigned called twice");
+	printTitle("Low grade signing failure");
 	try
 	{
-		Bureaucrat manager("Manager", 10);
-		bool sign = false;
-		Form invoice("Invoice", sign, 20, 20);
-		invoice.beSigned(manager);
-		invoice.beSigned(manager);
-		std::cout << invoice << std::endl;
+		Bureaucrat low("Low", 150);
+		ShrubberyCreationForm shrubbery("garden");
+		std::cout << "Attempting to sign with a low-grade bureaucrat" << std::endl;
+		shrubbery.beSigned(low);
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Unexpected exception: " << e.what() << std::endl;
-	}
-
-	printTitle("Copy constructor + assignment operator");
-	try
-	{
-		Bureaucrat sourceB("SourceB", 42);
-		Bureaucrat copyB(sourceB);
-		Bureaucrat assignedB("AssignedB", 120);
-		assignedB = sourceB;
-		std::cout << "sourceB:   " << sourceB;
-		std::cout << "copyB:     " << copyB;
-		std::cout << "assignedB: " << assignedB;
-
-		bool sign = false;
-		Form sourceF("SourceF", sign, 50, 25);
-		Form copyF(sourceF);
-		bool sign2 = false;
-		Form assignedF("AssignedF", sign2, 130, 130);
-		assignedF = sourceF;
-		std::cout << "sourceF:   " << sourceF << std::endl;
-		std::cout << "copyF:     " << copyF << std::endl;
-		std::cout << "assignedF: " << assignedF << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "Unexpected exception: " << e.what() << std::endl;
+		std::cout << "Caught expected exception: " << e.what() << std::endl;
 	}
 
 	return 0;

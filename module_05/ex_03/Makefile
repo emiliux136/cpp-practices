@@ -1,4 +1,4 @@
-SRC = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+SRC = Intern.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
@@ -15,7 +15,7 @@ clean:
 	$(RM) $(OBJ)
 	
 fclean: clean
-	$(RM) $(NAME) garden_shrubbery home_shrubbery
+	$(RM) $(NAME) LostYourLife_shrubbery
 	
 re: fclean $(NAME)
 
