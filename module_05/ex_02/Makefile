@@ -1,4 +1,4 @@
-SRC = Bureaucrat.cpp main.cpp Form.cpp PresidentialPardonForm.cpp
+SRC = Bureaucrat.cpp main.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
