@@ -1,13 +1,9 @@
-SRCS = main.cpp ScalarConverter.cpp
-SRCS := $(addprefix cpp/, $(SRCS)) # Source Files Prefix
-
-INCLUDES = "./hpp"
-
+SRCS = main.cpp ScalarConverter.cpp Define.cpp Cases.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 NAME = skyler
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -I$(INCLUDES)
+FLAGS = -Wall -Wextra -Werror -std=c++98 
 RM = rm -f
 
 all: $(NAME)
