@@ -27,11 +27,9 @@ class Bureaucrat
 
 		void signForm(const Form *signedForm, const std::string& reason);
 
-		//especific exception classes (Heredan de exception)
 		class GradeTooHighException : public std::exception
 		{
 			public:
-			//what sirve para devolver un mensaje descriptivo de  error.
 			const char* what() const noexcept override 
 			{
 				return "Grade too high";

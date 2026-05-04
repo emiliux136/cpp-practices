@@ -16,6 +16,7 @@ public:
 	~Intern();
 
 	Form *makeForm(std::string name, std::string target);
+
 	class FormNotFound : public std::exception 
 	{
 		public:

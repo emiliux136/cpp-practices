@@ -26,7 +26,7 @@ class Bureaucrat
 		class GradeTooHighException : public std::exception
 		{
 			public:
-			//what sirve para devolver un mensaje descriptivo de  error.
+			//what serves to return a descriptive error message.
 			const char* what() const noexcept override 
 			{
 				return "Grade too high";

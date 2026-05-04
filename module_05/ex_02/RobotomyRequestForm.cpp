@@ -32,7 +32,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::executer() const
 {
-    bool result = rand() % 2 == 0; //con esto consigo la aleatoriedad del 50 porciento.
+    bool result = rand() % 2 == 0; //50 percent aleatority
     std::cout << "BzzzZ Drzzzz (Drilling noises)" << std::endl;
     if(result)
 	    std::cout << "Informs that " << this->target << " has been robotomized successfully" << std::endl;
