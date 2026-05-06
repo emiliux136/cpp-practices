@@ -15,7 +15,6 @@
 # define MIN_DOUBLE std::numeric_limits<double>::min() //-1.79769e+308
 # define MAX_DOUBLE std::numeric_limits<double>::max() //1.79769e+308
 
-
 enum ScalarType
 {
 	Special = 0,

@@ -121,6 +121,7 @@ void	doubleCase(const std::string &input)
 		std::cout << "Exceeded the limits." << std::endl;
 	else
 		std::cout << static_cast<float>(d) << (tolerance ? ".0f" : "f") << std::endl;
+	std::cout << "double: ";
 	if (d < MIN_DOUBLE || d > MAX_DOUBLE)
 		std::cout << "Exceeded the limits." << std::endl;
 	else
