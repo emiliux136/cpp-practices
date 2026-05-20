@@ -27,7 +27,8 @@ int main()
 	// test exception handling for single-element span
 	try {
 		Span ssmall(1);
-		std::vector<int> one = generate_random_list(1);
+		const size_t E = 130;
+		std::vector<int> one = generate_random_list(E, 1, 4000);
 		ssmall.addNumber(one[0]);
 		std::cout << "Attempting shortestSpan() on single-element span..." << std::endl;
 		std::cout << ssmall.shortestSpan() << std::endl;
