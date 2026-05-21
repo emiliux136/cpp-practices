@@ -1,7 +1,7 @@
 #include "Span.hpp"
 #include <iostream>
 
-/*int main()
+int main()
 {
 	try {
 		const size_t N = 10001;
@@ -38,9 +38,9 @@
 	}
 
 	return 0;
-}*/
+}
 
-int main()
+/*	int main()
 {
 	Span sp = Span(5);
 	sp.addNumber(6);
@@ -51,4 +51,4 @@ int main()
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
 	return 0;
-}
+}	*/
