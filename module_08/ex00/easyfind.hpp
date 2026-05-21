@@ -14,6 +14,7 @@ class NotFound : public std::exception
 	}
 };
 
+//std::find is an STL (Standard Template Library) algorithm used to search for a value in a range of elements.
 template <typename T>
 typename T::iterator easyfind(T &input, int search)
 {

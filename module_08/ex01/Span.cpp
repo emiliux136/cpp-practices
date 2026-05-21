@@ -4,19 +4,19 @@
  // reserve() is used with containers like std::vector and std::string to pre-allocate memory capacity without changing the container’s size.
 Span::Span(unsigned int N): size(N), pos(0)
 {
-	std::cout << "Span constructor of " << N << " size called." << std::endl;
+	//std::cout << "Span constructor of " << N << " size called." << std::endl;
 	this->storage.reserve(this->getSize());
 }
 
 Span::Span(const Span &other): size(other.getSize()), pos(other.getPos())
 {
-	std::cout << "Span Copy Constructor called" << std::endl;
+	//std::cout << "Span Copy Constructor called" << std::endl;
 	*this = other;
 }
 
 Span &Span::operator=(const Span &other)
 {
-	std::cout << "Span Assignation operator called" << std::endl;
+	//std::cout << "Span Assignation operator called" << std::endl;
 	if (this == &other)
 		return *this;
 	this->size = other.getSize();
