@@ -1,4 +1,4 @@
-SRC = main.cpp main.cpp RPN.cpp
+SRC = main.cpp RPN.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f

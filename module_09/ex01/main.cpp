@@ -10,5 +10,16 @@ int main(int ac, char **av)
 	std::string str;
 	str = av[1];
 	if (str.find_first_not_of("0123456789+-*/ ") != std::string::npos)
-		return (std::cerr << "Error: Only numbers, operators, space are accepted." << std::endl);
+	{	
+		std::cerr << "Error: Only numbers, operators, space are accepted." << std::endl;
+		return (0);
+	}
+	try {
+		RPN operation(av[1]);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	return 0;
 }
