@@ -16,7 +16,7 @@ RPN::RPN(char *input) : inputC(input)
 			this->list.push(std::strtof(&inputC[i], nullptr));
 		else if (isOperator(token))
 		{
-			if(this->list.size() < 2)
+			if(this->list.size() < 2) // an operator needs at least two numbers.
 			{
 				throw NEN();
 			}
@@ -28,7 +28,7 @@ RPN::RPN(char *input) : inputC(input)
 				return value; 					//Return it.
 			};
 
-			float operand2 = popStack(); 		//Popped first.
+			float operand2 = popStack(); 		//Popped first. Because the implementation is inverted
 			float operand1 = popStack();
 			switch (token)
 			{
@@ -51,6 +51,7 @@ RPN::RPN(char *input) : inputC(input)
 			}
 		}
 	}
+
 	if (list.size() != 1)
 	{
 		throw NEO();

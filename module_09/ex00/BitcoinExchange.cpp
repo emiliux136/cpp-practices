@@ -4,12 +4,14 @@
 
 static const char *WHITESPACE = " \t\n\r";
 
+// Remove leading whitespace from `str` and return it by reference.
 static std::string &ltrim(std::string &str)
 {
 	str.erase(0, str.find_first_not_of(WHITESPACE));
 	return str;
 }
 
+// Remove trailing whitespace from `str` and return it by reference.
 static std::string &rtrim(std::string &str)
 {
 	std::string::size_type pos = str.find_last_not_of(WHITESPACE);
@@ -22,11 +24,13 @@ static std::string &rtrim(std::string &str)
 	return str;
 }
 
+// Trim whitespace from both ends of `str` and return it by reference.
 static std::string &trim(std::string &str)
 {
 	return ltrim(rtrim(str));
 }
 
+// Constructor: load `data.csv` into the `values` map; set `flag` to 0 on error.
 Bitcoin::Bitcoin() : flag(1)
 {
 	std::ifstream file("./data.csv");
@@ -63,25 +67,30 @@ Bitcoin::Bitcoin() : flag(1)
 	}
 }
 
+// Copy constructor: copy the internal state from `other`.
 Bitcoin::Bitcoin(Bitcoin const &other)
 {
 	*this = other;
 }
 
+// Assignment operator: copy the internal exchange `values` map from `other`
 Bitcoin& Bitcoin::operator=(Bitcoin const &other)
 {
 	this->values = other.values;
 	return *this;
 }
 
+// Return a copy of the internal `values` map (date -> rate).
 std::map <std::string, float> Bitcoin::GetValues()
 {
 	return (this->values);
 }
 
+// Destructor: no special cleanup required.
 Bitcoin::~Bitcoin(){}
 
 /*Ensure is openable and open it. If not informs.*/
+// Try to open `inputPath`; on failure set `flag` and return an empty stream.
 std::ifstream Bitcoin::IsOpenable(std::string inputPath)
 {
 	std::ifstream file(inputPath);
@@ -94,6 +103,7 @@ std::ifstream Bitcoin::IsOpenable(std::string inputPath)
 	return file;
 }
 
+// Parse a line of the form "date | value", validate it, and extract fields.
 bool Bitcoin::parseLine( const std::string& line, std::string& date, double& value)
 {
 	std::string::size_type pipe = line.find('|');
@@ -136,6 +146,7 @@ bool Bitcoin::parseLine( const std::string& line, std::string& date, double& val
 	return true;
 }
 
+// Find the rate for `date` or the nearest earlier date if exact match missing.
 float Bitcoin::findRate(const std::string& date)
 {
 	std::map<std::string, float>::iterator it;
@@ -158,6 +169,7 @@ float Bitcoin::findRate(const std::string& date)
 
 /*The function that prints the result. 
 Firstly calls the parser and then findRate.*/
+// Process a single input line: parse it, find the rate, and print the result.
 void Bitcoin::processLine(const std::string& line)
 {
 	std::string date;
@@ -175,11 +187,12 @@ void Bitcoin::processLine(const std::string& line)
 }	
 
 /*Starts the reading the input file, ensure is openable and send it to processement*/
+// Read the input file at `inputPath`, skip header, and process each line.
 void Bitcoin::ReadInfo(std::string inputPath)
 {
 	std::ifstream file = IsOpenable(inputPath);
 	if (!file)
-		return;	
+		return; 
 	std::string line;
 	std::getline(file, line); // skiping header
 	while (std::getline(file, line))

@@ -13,7 +13,7 @@ int main(int ac, char **av)
 		std::string c = av[i];
 		if (c.find_first_not_of("0123456789") != std::string::npos)
 		{
-			std::cerr << "Error: You can only provide numbers." << std::endl;
+			std::cerr << "Error: You can only provide positive numbers." << std::endl;
 			return 1;
 		}
 		long double n = std::strtol(av[i], NULL, 10); //"atoi"
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 	try
 	{
 		PmergeMe obj(list);
-		PmergeMe::printList(list);
+		PmergeMe::printPreview(list, 4, "Before: ");
 		obj.sort();
 		obj.printSorted();
 	} 
